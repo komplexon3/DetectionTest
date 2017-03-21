@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController,
     UIImagePickerControllerDelegate,
-UINavigationControllerDelegate  {
+    UINavigationControllerDelegate  {
     
     var detector: CIDetector?
     var detImage: CIImage?
@@ -31,6 +31,7 @@ UINavigationControllerDelegate  {
         if detImage != nil {
             detector = prepareRectangleDetector()
             detImage = performRectangleDetection(detImage!)
+            imageDisplayed = UIImage(ciImage: detImage)
         }
     }
     
