@@ -31,7 +31,7 @@ class ViewController: UIViewController,
         if detImage != nil {
             detector = prepareRectangleDetector()
             detImage = performRectangleDetection(detImage!)
-            imageDisplayed.image = UIImage(ciImage: detImage!)
+            imageDisplayed.image = UIImage(ciImage: detImage!)
         }
     }
     
