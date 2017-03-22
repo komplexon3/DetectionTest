@@ -96,6 +96,7 @@
 				TargetAttributes = {
 					0C2A2D811E81BA3B003834A5 = {
 						CreatedOnToolsVersion = 8.2.1;
+						DevelopmentTeam = 6T8XT66A5Y;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -258,6 +259,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6T8XT66A5Y;
 				INFOPLIST_FILE = DetectionTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = k3.DetectionTest;
@@ -270,6 +272,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6T8XT66A5Y;
 				INFOPLIST_FILE = DetectionTest/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = k3.DetectionTest;
@@ -297,6 +300,7 @@
 				0C2A2D961E81BA3B003834A5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

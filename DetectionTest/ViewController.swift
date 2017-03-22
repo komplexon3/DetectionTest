@@ -15,9 +15,15 @@ class ViewController: UIViewController,
     var detector: CIDetector?
     var detImage: CIImage?
     
-    @IBOutlet weak var imageDisplayed: UIImageView!
+    let imagePicker = UIImagePickerController()
+
+//MARK: - Outlets
     
-    @IBAction func openCameraButton(sender: AnyObject) {
+    @IBOutlet weak var imageDisplayed: UIImageView!
+
+//MARK: - Actions
+
+    @IBAction func openCameraButton(sender: UIButton) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera) {
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
@@ -27,7 +33,18 @@ class ViewController: UIViewController,
         }
     }
     
-    @IBAction func performDetection(sender: AnyObject) {
+    @IBAction func openPhotoLibraryButton(sender: UIButton) {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.photoLibrary) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.photoLibrary;
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+
+ 
+    @IBAction func performDetection(sender: UIButton) {
         if detImage != nil {
             detector = prepareRectangleDetector()
             detImage = performRectangleDetection(detImage!)
@@ -35,11 +52,24 @@ class ViewController: UIViewController,
         }
     }
     
-    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
-        imageDisplayed.image = image
-        detImage = CIImage(image: image)
-        self.dismiss(animated: true, completion: nil);
+//MARK: - Delegates
+
+    
+    func imagePickerController(_ picker: UIImagePickerController,
+                               didFinishPickingMediaWithInfo info: [String : AnyObject])
+    {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        imageDisplayed.contentMode = .scaleAspectFit
+        imageDisplayed.image = chosenImage
+        detImage = CIImage(image: chosenImage)
+        dismiss(animated:true, completion: nil)
     }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+
+//MARK: - The rest
     
     func prepareRectangleDetector() -> CIDetector {
         let options: [String: Any] = [CIDetectorAccuracy: CIDetectorAccuracyHigh, CIDetectorAspectRatio: 1.0]
@@ -77,6 +107,7 @@ class ViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        imagePicker.delegate = self
         // Do any additional setup after loading the view, typically from a nib.
     }
     
